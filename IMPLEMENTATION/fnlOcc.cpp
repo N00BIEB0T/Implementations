@@ -79,4 +79,3 @@ int main(){
     cout << "The last occurence of 3 is at index " << lastOcc(arr, 11, 3) << endl;
 
 }
-//hi
