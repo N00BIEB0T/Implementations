@@ -1,53 +1,41 @@
+//Find the pivot index of an array 
 #include<iostream>
 using namespace std;
 
-void printArr(int arr[], int n){
-    for (int i = 0; i < n; i++){
-        cout << arr[i] << " ";
+int pivotIndex(int arr[], int n){
+
+    int sum = 0;
+
+    for(int i = 0; i < n; i++){
+        sum = sum + arr[i];    
     }
-    cout << endl;
-}
-
-void sortArr(int arr[], int n){
     
-    int low = 0, mid = 0, high = n-1;
-
-    for (int i = 0; i < n){
-
-        if (arr[mid] == 0){
-
-        swap(arr[mid], arr[low]);
-        
-        low++;
-        mid++;
-
-        }
-
-        if(arr[mid] == 1){
-        
-        mid++;
+    int rightSum = sum;
+    int leftSum = 0;
     
+    for(int i = 0; i < n; i++){
+
+        rightSum = rightSum - arr[i];
+
+        if(leftSum == rightSum){
+            
+            return i;
+        
         }
-
-        if(arr[mid] == 2){
-
-        swap(arr[mid], arr[high]);
-
-        high--;
-
-        }
+        
+        leftSum = leftSum + arr[i];
 
     }
+
+    return -1;
+
 }
 
 int main(){
-    
-    int arr[6] = {2, 0, 2, 1, 1, 0};
-    
-    sortArr(arr, 6);
-    
-    printArr(arr, 6);
 
-    return 0;
+    int arr[3] = {2,1,-1};
+
+    cout << "Pivot index of the given array is " << pivotIndex(arr, 3);
+    
 
 }
