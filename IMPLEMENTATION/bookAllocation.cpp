@@ -11,17 +11,17 @@ bool isPossible(vector<int> arr, int n, int m, int mid){
     for(int i = 0; i < n; i++){
 
         if(pageSum + arr[i] <= mid){
-
-            pageSum += arr[i];
+                                                //check if we allocate next book to the students then will it be greater than "mid"
+            pageSum += arr[i];                  //until pageSum less than mid we allocate pages to the same students
 
         }
 
         else{
 
-            studentCount ++;
+            studentCount ++;                    // if we cannot allocate pages to same students then increase the student count
             
-            if(studentCount > m || arr[i] > mid){
-
+            if(studentCount > m || arr[i] > mid){       //if student count greater than "m(total students)" then it's not a possible solution 
+                                                        //or if number of pages greater than mid than also return false since it cannot be a possible solution
                 return false;
 
             }
@@ -55,14 +55,14 @@ int allocBook(vector<int> arr, int n, int m){
 
         if(isPossible(arr, n , m, mid)){
 
-            ans = mid;
-            e = mid - 1;
+            ans = mid;                              
+            e = mid - 1;                //all the solutions towards right are possible since there will be more  pages on the right side so we move towards left
 
         }
 
         else{
 
-            s = mid + 1;
+            s = mid + 1;                //go to right side since there are more number of pages so there will be more to divide amongst students
 
         }
 
